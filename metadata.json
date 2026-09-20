@@ -1,0 +1,11 @@
+{
+  "name": "NexusCore Developer Orchestrator",
+  "description": "API key extension manager, webhook orchestrator, MCP ingestor/compiler/host, multimodal perception engine, terminal, and file system workspace.",
+  "requestFramePermissions": [
+    "camera",
+    "microphone"
+  ],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}

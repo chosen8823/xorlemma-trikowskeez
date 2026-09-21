@@ -76,11 +76,29 @@ export const GoogleDriveView: React.FC = () => {
     }
   }, []);
 
-  const handleCrossReference = (file: DriveFile) => {
+  const handleCrossReference = async (file: DriveFile) => {
     if (!crossReferencedFiles.some(f => f.id === file.id)) {
-      setCrossReferencedFiles(prev => [...prev, file]);
-      setSyncedStatus(`Successfully cross-referenced '${file.name}' with Lumetra Engram substrate.`);
-      setTimeout(() => setSyncedStatus(null), 3500);
+      try {
+        const res = await fetch("/api/drive/analyze", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            ...(token ? { Authorization: `Bearer ${token}` } : {})
+          },
+          body: JSON.stringify({ fileId: file.id, fileName: file.name })
+        });
+        const data = await res.json();
+        if (data.success) {
+          setCrossReferencedFiles(prev => [...prev, file]);
+          setSyncedStatus(`Successfully cross-referenced '${file.name}' with Lumetra Engram substrate.`);
+          setTimeout(() => setSyncedStatus(null), 3500);
+        }
+      } catch (err) {
+        console.error("Cross-reference failed", err);
+        setCrossReferencedFiles(prev => [...prev, file]);
+        setSyncedStatus(`Cross-referenced '${file.name}' (Local Fallback).`);
+        setTimeout(() => setSyncedStatus(null), 3500);
+      }
     }
   };
 

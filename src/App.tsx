@@ -4,6 +4,7 @@ import { DashboardView } from "./components/DashboardView";
 import { FieldOsView } from "./components/FieldOsView";
 import { CryptandView } from "./components/CryptandView";
 import { GoogleDriveView } from "./components/GoogleDriveView";
+import { CommandCenterView } from "./components/CommandCenterView";
 import { ApiKeysView } from "./components/ApiKeysView";
 import { WebhooksView } from "./components/WebhooksView";
 import { McpStudioView } from "./components/McpStudioView";
@@ -53,6 +54,9 @@ export default function App() {
             webhooksCount={webhooks.length}
             mcpCount={mcpServers.length}
           />
+        )}
+        {activeTab === "oshub" && (
+          <CommandCenterView />
         )}
         {activeTab === "fieldos" && (
           <FieldOsView />

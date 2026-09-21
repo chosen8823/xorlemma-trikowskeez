@@ -1,5 +1,5 @@
 import React from "react";
-import { Server, Key, Webhook, Cpu, Eye, Terminal, Activity, ShieldCheck, Sparkles, HardDrive } from "lucide-react";
+import { Server, Key, Webhook, Cpu, Eye, Terminal, Activity, ShieldCheck, Sparkles, HardDrive, Network } from "lucide-react";
 
 interface HeaderProps {
   activeTab: string;
@@ -9,6 +9,7 @@ interface HeaderProps {
 export function Header({ activeTab, setActiveTab }: HeaderProps) {
   const tabs = [
     { id: "dashboard", label: "Dashboard", icon: Activity },
+    { id: "oshub", label: "Command Center & OS", icon: Network },
     { id: "fieldos", label: "FieldOS & Kernel", icon: ShieldCheck },
     { id: "cryptand", label: "Cryptand & YAML", icon: Sparkles },
     { id: "drive", label: "Google Drive", icon: HardDrive },

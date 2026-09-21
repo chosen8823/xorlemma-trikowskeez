@@ -102,6 +102,65 @@ export const YamlManager: React.FC<YamlManagerProps> = ({ tiers, onUpdateTier })
       </div>
 
       <div className="space-y-4">
+        {/* Architecture & External Anchor Layer Matrix */}
+        <div className="border border-slate-200 dark:border-slate-800 rounded-xl overflow-hidden">
+          <div className="bg-slate-50 dark:bg-slate-800/60 px-4 py-2.5 border-b border-slate-200 dark:border-slate-800 flex items-center justify-between">
+            <span className="text-xs font-mono font-bold text-slate-700 dark:text-slate-300 flex items-center gap-1.5 uppercase tracking-wider">
+              <Layers className="w-3.5 h-3.5 text-purple-600" /> System Layers & External Anchors Matrix
+            </span>
+            <span className="text-[10px] text-slate-400 font-mono">8 Tiers & Anchor Gateways Active</span>
+          </div>
+          <div className="overflow-x-auto">
+            <table className="w-full text-left text-xs font-mono">
+              <thead className="bg-slate-100/60 dark:bg-slate-800/40 text-slate-500 text-[10px] uppercase border-b border-slate-200 dark:border-slate-800">
+                <tr>
+                  <th className="py-2.5 px-3 font-semibold">Layer</th>
+                  <th className="py-2.5 px-3 font-semibold">Function</th>
+                  <th className="py-2.5 px-3 font-semibold">External Anchor</th>
+                  <th className="py-2.5 px-3 font-semibold">Action</th>
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-slate-100 dark:divide-slate-800">
+                {[
+                  { id: "tier-0", layer: "Tier 0 Kernel YAML", func: "foundational self‑observation and alignment rules", anchor: "xorlemma trikowskeez root manifest", status: "ANCHORED" },
+                  { id: "tier-1", layer: "Tier 1 Hive YAML", func: "agent ecology and gamification logic", anchor: "device registry in Desktop Commander MCP", status: "SYNCED" },
+                  { id: "tier-2", layer: "Tier 2 Field YAML", func: "symbolic motion grammar and attractor physics", anchor: "NexusCore perception engine", status: "RESONANT" },
+                  { id: "tier-3", layer: "Tier 3 World YAML", func: "procedural generation and narrative layers", anchor: "AI Studio orchestration workspace", status: "AUTONOMOUS" },
+                  { id: "tier-4", layer: "Tier 4 Engram YAML", func: "persistent memory substrate", anchor: "Lumetra Engram schema", status: "PERSISTENT" },
+                  { id: "mcp-tools", layer: "MCP Tools", func: "JSON‑RPC interfaces and syscalls", anchor: "mcp.desktopcommander.app", status: "14 TOOLS" },
+                  { id: "cryptand-exp", layer: "Cryptand Expansion Rules", func: "bounded infinite extension logic", anchor: "xorlemma trikowskeez cryptand module", status: "EXPANDED" },
+                  { id: "agent-evo", layer: "Agent Evolution Mechanics", func: "self‑maintenance and upgrade cycles", anchor: "hive daemons in NexusCore", status: "OPTIMAL" },
+                ].map((row) => (
+                  <tr
+                    key={row.layer}
+                    onClick={() => {
+                      if (tiers[row.id]) setActiveTier(row.id);
+                    }}
+                    className={`cursor-pointer transition hover:bg-purple-50/50 dark:hover:bg-purple-950/30 ${
+                      activeTier === row.id ? "bg-purple-50/80 dark:bg-purple-950/50 font-semibold" : ""
+                    }`}
+                  >
+                    <td className="py-2 px-3 font-bold text-purple-700 dark:text-purple-300 whitespace-nowrap">
+                      {row.layer}
+                    </td>
+                    <td className="py-2 px-3 text-slate-600 dark:text-slate-300">
+                      {row.func}
+                    </td>
+                    <td className="py-2 px-3 text-slate-500 font-mono text-[11px]">
+                      <code className="bg-slate-100 dark:bg-slate-800 px-1.5 py-0.5 rounded text-purple-600 dark:text-purple-300">{row.anchor}</code>
+                    </td>
+                    <td className="py-2 px-3">
+                      <span className="px-2 py-0.5 rounded text-[9px] font-bold bg-emerald-100 text-emerald-800 dark:bg-emerald-950 dark:text-emerald-300">
+                        {row.status}
+                      </span>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </div>
+
         <div className="flex items-center justify-between">
           <span className="text-xs font-mono font-bold text-purple-600 dark:text-purple-400 uppercase tracking-wider">
             Editing: {tiers[activeTier]?.name || activeTier}
